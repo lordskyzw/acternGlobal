@@ -1,0 +1,16 @@
+.root{
+    background-color: orangered;
+}
+
+header{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 300;
+    font-size: large;
+}
+
+.title{
+    background-color: powderblue;
+}
+.title-logo{
+    color: transparent;
+}
