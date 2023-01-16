@@ -1,45 +1,542 @@
 <!DOCTYPE html>
 <head>
-    <meta charset = "UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href="https://font.googleapis.com/css2?family=Montserrat&family=Oswald&display=swap" rel="stylesheet">
-    <title>Get In Touch</title>
-</head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald&display=swap" rel="stylesheet">
+    <title>Contact Me</title>
+<style>
+  body{
+    color: #FFD6D6;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #FF6600;
+    font-family:'Montserrat',sans-serif;
+    font-size: 18px;
+    overflow-x: hidden;
+    }
 
-    <style>
-        body{
-            color: #FFD6D6;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: #FF6600;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 18px;
-            overflow-x: hidden;
-        }
-
-        h1 a{
+    h1 a {
             position: relative;
-            left:15%;
-            top:10px;
+            left: 15%;
+            top: 15px;
             text-align: center;
-            color: #2a4ebc;
+            color:#2a4ebc;
             font-size: 25px;
             text-decoration: none;
             font-family: 'Oswald', sans-serif;
         }
 
-        main{display: flex;
+        main {
+            display: flex;
             justify-items: center;
             justify-content: space-between;
-            background-color: #FFFFFF;
+            background-color:#FFFFFF ;
             height: 105px;
-            top:0;
+            top: 0;
             position: sticky;
             z-index: 1000;
             -webkit-transition: transform .7s ease-in-out;
             -moz-transition: transform .7s ease-in-out;
+            -ms-transition: transform .7s ease-in-out;
+            -o-transition: transform .7s ease-in-out;
+            transition: transform .7s ease-in-out;
         }
-    </style>
+        .bar {
+            display: block;
+            height: 5px;
+            width: 50px;
+            background-color: #000000;
+            margin: 10px auto;
+        }
+
+        .button {
+            cursor: pointer;
+            display: inline-block;
+            width: auto;
+            margin: 0 auto;
+            -webkit-transition: all .7s ease;
+            -moz-transition: all .7s ease;
+            -ms-transition: all .7s ease;
+            -o-transition: all .7s ease;
+            transition: all .7s ease;
+        }
+
+        .nav-right {
+            position: fixed;
+            right: 40px;
+            top: 25px;
+        }
+
+        .nav-right.visible-xs {
+            z-index: 3;
+        }
+
+        .hidden-xs {
+            display: none;
+        }
+
+        .middle {
+            margin: 0 auto;
+        }
+
+        .sidebar {
+            height: 580px;
+            width: 500px;
+            position: fixed;
+            visibility: hidden;
+            z-index: 10;
+            right: 0;
+            margin-top: -33px;
+            -webkit-transition: all .7s ease-in-out;
+            -moz-transition: all .7s ease-in-out;
+            -ms-transition: all .7s ease-in-out;
+            -o-transition: all .7s ease-in-out;
+            transition: all .7s ease-in-out;
+        }
+
+        .bar {
+            -webkit-transition: all .7s ease;
+            -moz-transition: all .7s ease;
+            -ms-transition: all .7s ease;
+            -o-transition: all .7s ease;
+            transition: all .7s ease;
+        }
+
+        .nav-right.visible-xs .active .bar {
+            -webkit-transition: all .7s ease;
+            -moz-transition: all .7s ease;
+            -ms-transition: all .7s ease;
+            -o-transition: all .7s ease;
+            transition: all .7s ease;
+        }
+
+        .button.active .top {
+            -webkit-transform: translateY(15px) rotateZ(45deg);
+            -moz-transform: translateY(15px) rotateZ(45deg);
+            -ms-transform: translateY(15px) rotateZ(45deg);
+            -o-transform: translateY(15px) rotateZ(45deg);
+            transform: translateY(15px) rotateZ(45deg);
+        }
+
+        .button.active .bottom {
+            -webkit-transform: translateY(-15px) rotateZ(-45deg);
+            -moz-transform: translateY(-15px) rotateZ(-45deg);
+            -ms-transform: translateY(-15px) rotateZ(-45deg);
+            -o-transform: translateY(-15px) rotateZ(-45deg);
+            transform: translateY(-15px) rotateZ(-45deg);
+        }
+
+        .button.active .middle {
+            width: 0;
+        }
+
+        .move-to-left {
+            -webkit-transform: translateX(0px);
+            -moz-transform: translateX(0px);
+            -ms-transform: translateX(0px);
+            -o-transform: translateX(0px);
+            transform: translateX(0px);
+        }
+
+        .sidebar-list {
+            height: 620px;
+            width: 500px;
+            list-style: none;
+            position: relative;
+            text-align: center;
+            background:#FFFFFF;
+            visibility: hidden;
+            -webkit-transition: all .7s ease-in-out;
+            -moz-transition: all .7s ease-in-out;
+            -ms-transition: all .7s ease-in-out;
+            -o-transition: all .7s ease-in-out;
+            transition: all .7s ease-in-out;
+        }
+
+        .sidebar-item {
+            padding: 45px;
+            opacity: 0;
+            -webkit-transform: translateY(-20px);
+            -moz-transform: translateY(-20px);
+            -ms-transform: translateY(-20px);
+            -o-transform: translateY(-20px);
+            transform: translateY(-20px);
+        }
+
+        .sidebar-item:first-child {
+            -webkit-transition: all .7s .2s ease-in-out;
+            -moz-transition: all .7s .2s ease-in-out;
+            -ms-transition: all .7s .2s ease-in-out;
+            -o-transition: all .7s .2s ease-in-out;
+            transition: all .7s .2s ease-in-out;
+        }
+
+        .sidebar-item:nth-child(2) {
+            -webkit-transition: all .7s .4s ease-in-out;
+            -moz-transition: all .7s .4s ease-in-out;
+            -ms-transition: all .7s .4s ease-in-out;
+            -o-transition: all .7s .4s ease-in-out;
+            transition: all .7s .4s ease-in-out;
+        }
+
+        .sidebar-item:nth-child(3) {
+            -webkit-transition: all .7s .6s ease-in-out;
+            -moz-transition: all .7s .6s ease-in-out;
+            -ms-transition: all .7s .6s ease-in-out;
+            -o-transition: all .7s .6s ease-in-out;
+            transition: all .7s .6s ease-in-out;
+        }
+
+        .sidebar-item:last-child {
+            -webkit-transition: all .7s .8s ease-in-out;
+            -moz-transition: all .7s .8s ease-in-out;
+            -ms-transition: all .7s .8s ease-in-out;
+            -o-transition: all .7s .8s ease-in-out;
+            transition: all .7s .6s ease-in-out;
+        }
+
+        .sidebar-item.active {
+            opacity: 1;
+            -webkit-transform: translateY(0px);
+            -moz-transform: translateY(0px);
+            -ms-transform: translateY(0px);
+            -o-transform: translateY(0px);
+            transform: translateY(0px);
+        }
+
+        .sidebar-list.active {
+            visibility: visible;
+            -webkit-transition: all .7s ease-in-out;
+            -moz-transition: all .7s ease-in-out;
+            -ms-transition: all .7s ease-in-out;
+            -o-transition: all .7s ease-in-out;
+            transition: all .7s ease-in-out;
+        }
+
+        .sidebar-anchor {
+            color:#000000 ;
+            text-decoration: none;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 7px;
+        }
+
+        .sidebar-anchor:before {
+            content: "";
+            width: 0;
+            height: 2px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color:#FFFFFF;
+            -webkit-transition: all .7s ease-in-out;
+            -moz-transition: all .7s ease-in-out;
+            -ms-transition: all .7s ease-in-out;
+            -o-transition: all .7s ease-in-out;
+            transition: all .7s ease-in-out;
+        }
+
+
+        @media (min-width: 480px) {
+            .nav-list {
+                display: block;
+            }
+        }
+
+        @media (min-width: 280px) {
+            .nav-right {
+                position: absolute;
+            }
+
+            .hidden-xs {
+                display: block;
+            }
+
+            .visible-xs {
+                display: none;
+            }
+        }
+
+.form{
+  width:340px;
+  height:440px;
+  background: #FFFFFF;
+  border-radius:8px;
+  box-shadow:0 0 40px -10px #000;
+  margin:calc(50vh - 220px) auto;
+  padding:20px 30px;max-width:calc(100vw - 40px);
+  box-sizing:border-box;
+  font-family:'Montserrat',sans-serif;
+  position:relative
+}
+
+h2{
+  margin:10px 0;
+  padding-bottom:10px;
+  width:180px;
+  color:#2a4ebc;
+  border-bottom:3px solid #2a4ebc;
+  font-family: 'Oswald', sans-serif;
+}
+input{
+  width:100%;
+  padding:10px;
+  box-sizing:border-box;
+  background:none;
+  outline:none;
+  resize:none;
+  border:0;
+  font-family:'Montserrat',sans-serif;
+  transition:all .3s;
+  border-bottom:2px solid #2a4ebc;
+}
+input:focus{
+  border-bottom:2px solid #FF6600;
+}
+p:before{content:attr(type);display:block;
+  margin:28px 0 0;font-size:14px;
+  color: #FF6600;
+}
+button{
+  float:right;
+  padding:8px 12px;
+  margin:8px 0 0;
+  font-family:'Montserrat',sans-serif;
+  border:2px solid #2a4ebc;
+  background:0;
+  color:#FF6600;
+  cursor:pointer;
+  transition:all .3s
+}
+button:hover{
+  background:#2a4ebc;
+  color:#FF6600
+}
+.jumbo{
+  content:'Hi';
+  position:absolute;
+  bottom:-45px;
+  right: 5px;
+  background:#FFFFFF;
+  color:#2a4ebc;
+  width:320px;
+  padding:16px 4px 16px 0;
+  border-radius:6px;
+  font-size:19px;
+  box-shadow:10px 10px 40px -14px #000
+}
+.jumbo span{
+  margin:0 5px 0 15px
+}
+.jumbo span a{
+  text-decoration: none;
+  position: relative;
+  left: 10px;
+  color: #2a4ebc;
+  font-family:'Montserrat',sans-serif;
+}
+#footer {
+          background: #FFFFFF;
+            bottom: -120px;
+            position: relative;
+        }
+
+        footer .nigo {
+            text-align: center;
+            margin: 5px;
+        }
+
+        footer .nigo a {
+            margin: 0 22px;
+        }
+
+        footer .jabbo {
+            text-align: center;
+            margin: 5px;
+        }
+
+        .jay {
+            color:#2a4ebc;
+            font-family: 'Oswald', sans-serif;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        footer ul {
+            margin-top: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 21px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        footer ul li {
+            display: flex;
+            justify-content: center;
+        }
+
+        footer ul a {
+          font-family: 'Montserrat', sans-serif;
+            text-decoration: none;
+            color:#000000 ;
+        }
+
+
+        footer .bimbo {
+            margin: 7px;
+            text-align: center;
+            font-size: 21px;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            left: 1%;
+            color: #000000;
+           
+        }
+        footer .jimbo{
+            margin: 7px;
+            text-align: center;
+            font-size: 21px;
+           
+            position: relative;
+            left: 1%;
+            color: #000000;
+        }
+        .nigo a img {
+            width: 30px;
+            height: 30px;
+           text-align: center;
+        }
+</style>
+</head>
+<body>
+
+<div class="nav-right visible-xs">
+        <div class="button" id="btn">
+            <div class="bar top"></div>
+            <div class="bar middle"></div>
+            <div class="bar bottom"></div>
+        </div>
+    </div>
+
+    <main>
+
+        <nav>
+            <div class="nav-right hidden-xs">
+                <div class="button" id="btn">
+                    <div class="bar top"></div>
+                    <div class="bar middle"></div>
+                    <div class="bar bottom"></div>
+                </div>
+            </div>
+
+            <h1><a href="index.html">Arctern <span style="border: 1px solid ; text-transform: uppercase;">Global</span> </h1>
+        </nav>
+
+    </main>
+
+
+    <div class="sidebar">
+        <ul class="sidebar-list">
+            <li class="sidebar-item"><a href="index.html" class="sidebar-anchor">Home</a></li>
+            <li class="sidebar-item"><a href="About Arctern Global.html" class="sidebar-anchor">About Arctern Global</a></li>
+            <li class="sidebar-item"><a href="Contact Us.html" class="sidebar-anchor">Contact Us</a></li>
+        </ul>
+    </div>
+
+  
+
+<form class="form" id="form">
+  <h2>CONTACT US</h2>
+  <p type="Name:"><input placeholder="Write your name here.."></input></p>
+  <p type="Email:"><input placeholder="Let us know how to contact you back.."></input></p>
+  <p type="Message:"><input placeholder="What would you like to tell us.."></input></p>
+  <button name="submit">Send Message</button>
+  <div class="jumbo">
+    <span class="fa fa-phone"><a href="#">+8617620850835</a></span>
+    <span class="fa fa-envelope-o"><a href="#">contact@company.com</a></span> 
+  </div>
+</form>
+
+<script>
+  document.querySelector('button').addEventListener('click', (e)=>{
+  e.preventDefault();
+  const contactForm = document.querySelector('#form');
+  const name = document.querySelector('[name="name"]');
+  const email = document.querySelector('[name="email"]');
+  const message = document.querySelector('[name="content"]');
+  // validation before sending the data
+  if(name.value.length===0 || name.value.length===0 || name.value.length===0){
+    alert('please fill the inputs')
+  }else{
+    let data = new FormData(contactForm);  
+    fetch("_url_here", { method: "POST", body: data });
+    alert('Thank you. your form was submited');
+    contactForm.reset()
+  }
+})
+</script>
+
+<footer id="footer">
+        <div class="jabbo">
+            <div class="jay">About Us</div>
+            <p class="Jim"></p>
+        </div>
+
+        <ul>
+            <div class="jay">Company</div>
+            <li style="border-left:none">
+                <a href="About Us.php">About Arctern Global</a>
+            </li>
+            <li>
+                <a href="Contact Us.php">Contact Us</a>
+            </li>
+            <li>
+                <a href="index.php">Home</a>
+            </li>
+        </ul>
+
+        <p class="jimbo">
+          <span style="font-weight:bold ;">Address : </span> Harare Zimbabwe.
+        </p>
+
+
+            <div class="nigo">
+      <a href="mailto:"><img src="email.png"></a>
+      <a href="tel:+8616657109525"><img src="telephone.png"></a>
+      <a href="tel:+8613218757865"><img src="telephone.png"></a>
+    </div>
+
+    <p class="bimbo">
+            &#169; 2022 Arctern Global.</p>
+
+    </footer>
+    
+  <script>
+    $(document).ready(function() {
+
+  
+function toggleSidebar() {
+   $(".button").toggleClass("active");
+   $("main").toggleClass("move-to-left");
+   $(".sidebar-item").toggleClass("active");
+   $(".sidebar-list").toggleClass("active");
+ }
+ 
+ $(".button").on("click tap", function() {
+   toggleSidebar();
+ });
+ 
+ $(document).keyup(function(e) {
+   if (e.keyCode === 27) {
+     toggleSidebar();
+   }
+ });
+ 
+ }); 
+  </script>
+</body>
+</html>
