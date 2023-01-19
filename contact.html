@@ -3,9 +3,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald&display=swap" rel="stylesheet">
-    <title>Contact Me</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald&display=swap" rel="stylesheet">
+  <title>Contact Me</title>
 <style>
   body{
     color: #FFD6D6;
@@ -18,16 +18,12 @@
     overflow-x: hidden;
     }
 
-    h1 a {
-            position: relative;
-            left: 15%;
-            top: 15px;
-            text-align: center;
-            color:#2a4ebc;
-            font-size: 25px;
-            text-decoration: none;
-            font-family: 'Oswald', sans-serif;
-        }
+  h1 a img{
+    height: auto;
+    width: auto;
+    max-height: 72px;
+    max-width: 250px;
+  }
 
         main {
             display: flex;
@@ -433,7 +429,7 @@ button:hover{
                 </div>
             </div>
 
-            <h1><a href="index.html">Arctern <span style="border: 1px solid ; text-transform: uppercase;">Global</span> </h1>
+            <h1><a href="index.html"><img src="image0.jpeg" class="fitz" alt=""></a> </h1>
         </nav>
 
     </main>
@@ -456,8 +452,8 @@ button:hover{
   <p type="Message:"><input name="content" placeholder="What would you like to tell us.."></input></p>
   <button name="submit">Send Message</button>
   <div class="jumbo">
-    <span class="fa fa-phone"><a href="tel:+8616657109525">+8616657109525</a></span>
-    <span class="fa fa-envelope-o"><a href="#mailto:arcternglobal@arcternglobal">arcternglobal@arcternglobal</a></span> 
+    <span class="fa fa-phone"><a href="#">+8617620850835</a></span>
+    <span class="fa fa-envelope-o"><a href="#">contact@company.com</a></span> 
   </div>
 </form>
 
@@ -472,7 +468,7 @@ button:hover{
   if(name.value.length===0 || name.value.length===0 || name.value.length===0){
     alert('please fill the inputs')
   }else{
-    let data = new FormData(contactForm);  
+    let data = new FormData(contactForm);
     fetch("_url_here", { method: "POST", body: data });
     alert('Thank you. your form was submited');
     contactForm.reset()
@@ -489,18 +485,18 @@ button:hover{
         <ul>
             <div class="jay">Company</div>
             <li style="border-left:none">
-                <a href="About Us.php">About Arctern Global</a>
+                <a href="About Us.html">About Arctern Global</a>
             </li>
             <li>
-                <a href="Contact Us.php">Contact Us</a>
+                <a href="Contact Us.html">Contact Us</a>
             </li>
             <li>
-                <a href="index.php">Home</a>
+                <a href="index.html">Home</a>
             </li>
         </ul>
 
         <p class="jimbo">
-          <span style="font-weight:bold ;">Address : </span>2067 Malanga Tilco Road Zengeza, Harare Zimbabwe.
+          <span style="font-weight:bold ;">Address : </span> Harare Zimbabwe.
         </p>
 
 
