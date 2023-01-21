@@ -23,6 +23,8 @@
     width: auto;
     max-height: 72px;
     max-width: 250px;
+    position: relative;
+    left: 35px;
   }
 
         main {
@@ -381,7 +383,6 @@ button:hover{
             color:#000000 ;
         }
 
-
         footer .bimbo {
             margin: 7px;
             text-align: center;
@@ -396,26 +397,26 @@ button:hover{
             margin: 7px;
             text-align: center;
             font-size: 21px;
-           
+            font-family: 'Montserrat', sans-serif;
             position: relative;
             left: 1%;
             color: #000000;
         }
-        .nigo a img {
-            width: 30px;
-            height: 30px;
-           text-align: center;
-        }
+        
+        .nigo i {
+        font-size: 28px;
+        color: #2a4ebc;
+       }
 </style>
 </head>
 <body>
 
-    <div class="nav-right visible-xs">
-            <div class="button" id="btn">
-                <div class="bar top"></div>
-                <div class="bar middle"></div>
-                <div class="bar bottom"></div>
-            </div>
+<div class="nav-right visible-xs">
+        <div class="button" id="btn">
+            <div class="bar top"></div>
+            <div class="bar middle"></div>
+            <div class="bar bottom"></div>
+        </div>
     </div>
 
     <main>
@@ -445,17 +446,19 @@ button:hover{
 
   
 
-    <form class="form" id="form">
-    <h2>CONTACT US</h2>
-    <p type="Name:"><input name="name" placeholder="Write your name here.."></input></p>
-    <p type="Email:"><input name="email" placeholder="Let us know how to contact you back.."></input></p>
-    <p type="Message:"><input name="content" placeholder="What would you like to tell us.."></input></p>
-    <button name="submit">Send Message</button>
-    <div class="jumbo">
-        <span class="fa fa-phone"><a href="#">+8617620850835</a></span>
-        <span class="fa fa-envelope-o"><a href="#">enquiries@arcternglobal.com</a></span> 
-    </div>
-    </form>
+<form class="form" id="form">
+  <h2>CONTACT US</h2>
+  <p type="Name:"><input name="name" placeholder="Write your name here.."></input></p>
+  <p type="Email:"><input name="email" placeholder="Let us know how to contact you back.."></input></p>
+  <p type="Message:"><input name="content" placeholder="What would you like to tell us.."></input></p>
+  <button name="submit">Send Message</button>
+  <div class="jumbo">
+    <span class="fa fa-phone"><a href="#">+8617620850835</a></span>
+    <span class="fa fa-envelope-o"><a href="#">contact@company.com</a></span> 
+  </div>
+</form>
+
+
 
 <script>
   document.querySelector('button').addEventListener('click', (e)=>{
@@ -478,17 +481,17 @@ button:hover{
 
 <footer id="footer">
         <div class="jabbo">
-            <div class="jay"><a href="aboutus.html">About Us</a></div>
+            <div class="jay">About Us</div>
             <p class="Jim"></p>
         </div>
 
         <ul>
             <div class="jay">Company</div>
             <li style="border-left:none">
-                <a href="aboutUs.html">About Arctern Global</a>
+                <a href="About Us.html">About Arctern Global</a>
             </li>
             <li>
-                <a href="#">Contact Us</a>
+                <a href="Contact Us.html">Contact Us</a>
             </li>
             <li>
                 <a href="index.html">Home</a>
@@ -496,14 +499,13 @@ button:hover{
         </ul>
 
         <p class="jimbo">
-          <span style="font-weight:bold ;">Address : </span> Harare Zimbabwe.
+          <span style="font-weight:bold ;">Address : </span>20677 Malanga Tilco Road Zengeza, Harare Zimbabwe.
         </p>
 
 
             <div class="nigo">
-      <a href="mailto: enquiries@acternglobal.com"><img src="email.png"></a>
-      <a href="tel:+8616657109525"><img src="telephone.png"></a>
-      <a href="tel:+8613218757865"><img src="telephone.png"></a>
+                <a href="tel:+8617620850835"> <i class="fa fa-phone"></i></a>
+                <a href="mailto:contact@company.com"> <i class="fa fa-envelope-o"></i></a>
     </div>
 
     <p class="bimbo">
