@@ -1,59 +1,456 @@
 <!DOCTYPE html>
-<html lang="en-US">
-	<head>
-		<title>Actern Global</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="../dist/output.css" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald&display=swap" rel="stylesheet">
 		<meta name="author" content="Tarmica">
-		
+		<style>
+            body{
+    color: #FFD6D6;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #FF6600;
+    font-family:'Montserrat',sans-serif;
+    font-size: 18px;
+    overflow-x: hidden;
+    }
+
+  h1 a img{
+    height: auto;
+    width: auto;
+    max-height: 72px;
+    max-width: 250px;
+    position: relative;
+    left: 35px;
+  }
+h2{
+    color:#2a4ebc;
+            font-family: 'Oswald', sans-serif;
+            text-align: center;
+            font-size: 24px;
+}
+h3{
+    color:#2a4ebc;
+            font-family: 'Oswald', sans-serif;
+            text-align: center;
+            font-size: 24px;  
+}
+p{
+    text-align: center;
+}
+        main {
+            display: flex;
+            justify-items: center;
+            justify-content: space-between;
+            background-color:#FFFFFF ;
+            height: 105px;
+            top: 0;
+            position: sticky;
+            z-index: 1000;
+            -webkit-transition: transform .7s ease-in-out;
+            -moz-transition: transform .7s ease-in-out;
+            -ms-transition: transform .7s ease-in-out;
+            -o-transition: transform .7s ease-in-out;
+            transition: transform .7s ease-in-out;
+        }
+        .bar {
+            display: block;
+            height: 5px;
+            width: 50px;
+            background-color: #000000;
+            margin: 10px auto;
+        }
+
+        .button {
+            cursor: pointer;
+            display: inline-block;
+            width: auto;
+            margin: 0 auto;
+            -webkit-transition: all .7s ease;
+            -moz-transition: all .7s ease;
+            -ms-transition: all .7s ease;
+            -o-transition: all .7s ease;
+            transition: all .7s ease;
+        }
+
+        .nav-right {
+            position: fixed;
+            right: 40px;
+            top: 25px;
+        }
+
+        .nav-right.visible-xs {
+            z-index: 3;
+        }
+
+        .hidden-xs {
+            display: none;
+        }
+
+        .middle {
+            margin: 0 auto;
+        }
+
+        .sidebar {
+            height: 580px;
+            width: 500px;
+            position: fixed;
+            visibility: hidden;
+            z-index: 10;
+            right: 0;
+            margin-top: -33px;
+            -webkit-transition: all .7s ease-in-out;
+            -moz-transition: all .7s ease-in-out;
+            -ms-transition: all .7s ease-in-out;
+            -o-transition: all .7s ease-in-out;
+            transition: all .7s ease-in-out;
+        }
+
+        .bar {
+            -webkit-transition: all .7s ease;
+            -moz-transition: all .7s ease;
+            -ms-transition: all .7s ease;
+            -o-transition: all .7s ease;
+            transition: all .7s ease;
+        }
+
+        .nav-right.visible-xs .active .bar {
+            -webkit-transition: all .7s ease;
+            -moz-transition: all .7s ease;
+            -ms-transition: all .7s ease;
+            -o-transition: all .7s ease;
+            transition: all .7s ease;
+        }
+
+        .button.active .top {
+            -webkit-transform: translateY(15px) rotateZ(45deg);
+            -moz-transform: translateY(15px) rotateZ(45deg);
+            -ms-transform: translateY(15px) rotateZ(45deg);
+            -o-transform: translateY(15px) rotateZ(45deg);
+            transform: translateY(15px) rotateZ(45deg);
+        }
+
+        .button.active .bottom {
+            -webkit-transform: translateY(-15px) rotateZ(-45deg);
+            -moz-transform: translateY(-15px) rotateZ(-45deg);
+            -ms-transform: translateY(-15px) rotateZ(-45deg);
+            -o-transform: translateY(-15px) rotateZ(-45deg);
+            transform: translateY(-15px) rotateZ(-45deg);
+        }
+
+        .button.active .middle {
+            width: 0;
+        }
+
+        .move-to-left {
+            -webkit-transform: translateX(0px);
+            -moz-transform: translateX(0px);
+            -ms-transform: translateX(0px);
+            -o-transform: translateX(0px);
+            transform: translateX(0px);
+        }
+
+        .sidebar-list {
+            height: 620px;
+            width: 500px;
+            list-style: none;
+            position: relative;
+            text-align: center;
+            background:#FFFFFF;
+            visibility: hidden;
+            -webkit-transition: all .7s ease-in-out;
+            -moz-transition: all .7s ease-in-out;
+            -ms-transition: all .7s ease-in-out;
+            -o-transition: all .7s ease-in-out;
+            transition: all .7s ease-in-out;
+        }
+
+        .sidebar-item {
+            padding: 45px;
+            opacity: 0;
+            -webkit-transform: translateY(-20px);
+            -moz-transform: translateY(-20px);
+            -ms-transform: translateY(-20px);
+            -o-transform: translateY(-20px);
+            transform: translateY(-20px);
+        }
+
+        .sidebar-item:first-child {
+            -webkit-transition: all .7s .2s ease-in-out;
+            -moz-transition: all .7s .2s ease-in-out;
+            -ms-transition: all .7s .2s ease-in-out;
+            -o-transition: all .7s .2s ease-in-out;
+            transition: all .7s .2s ease-in-out;
+        }
+
+        .sidebar-item:nth-child(2) {
+            -webkit-transition: all .7s .4s ease-in-out;
+            -moz-transition: all .7s .4s ease-in-out;
+            -ms-transition: all .7s .4s ease-in-out;
+            -o-transition: all .7s .4s ease-in-out;
+            transition: all .7s .4s ease-in-out;
+        }
+
+        .sidebar-item:nth-child(3) {
+            -webkit-transition: all .7s .6s ease-in-out;
+            -moz-transition: all .7s .6s ease-in-out;
+            -ms-transition: all .7s .6s ease-in-out;
+            -o-transition: all .7s .6s ease-in-out;
+            transition: all .7s .6s ease-in-out;
+        }
+
+        .sidebar-item:last-child {
+            -webkit-transition: all .7s .8s ease-in-out;
+            -moz-transition: all .7s .8s ease-in-out;
+            -ms-transition: all .7s .8s ease-in-out;
+            -o-transition: all .7s .8s ease-in-out;
+            transition: all .7s .6s ease-in-out;
+        }
+
+        .sidebar-item.active {
+            opacity: 1;
+            -webkit-transform: translateY(0px);
+            -moz-transform: translateY(0px);
+            -ms-transform: translateY(0px);
+            -o-transform: translateY(0px);
+            transform: translateY(0px);
+        }
+
+        .sidebar-list.active {
+            visibility: visible;
+            -webkit-transition: all .7s ease-in-out;
+            -moz-transition: all .7s ease-in-out;
+            -ms-transition: all .7s ease-in-out;
+            -o-transition: all .7s ease-in-out;
+            transition: all .7s ease-in-out;
+        }
+
+        .sidebar-anchor {
+            color:#000000 ;
+            text-decoration: none;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 7px;
+        }
+
+        .sidebar-anchor:before {
+            content: "";
+            width: 0;
+            height: 2px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color:#FFFFFF;
+            -webkit-transition: all .7s ease-in-out;
+            -moz-transition: all .7s ease-in-out;
+            -ms-transition: all .7s ease-in-out;
+            -o-transition: all .7s ease-in-out;
+            transition: all .7s ease-in-out;
+        }
+
+
+        @media (min-width: 480px) {
+            .nav-list {
+                display: block;
+            }
+        }
+
+        @media (min-width: 280px) {
+            .nav-right {
+                position: absolute;
+            }
+
+            .hidden-xs {
+                display: block;
+            }
+
+            .visible-xs {
+                display: none;
+            }
+        }
+        #footer {
+          background: #FFFFFF;
+            bottom: -120px;
+            position: relative;
+        }
+
+        footer .nigo {
+            text-align: center;
+            margin: 5px;
+        }
+
+        footer .nigo a {
+            margin: 0 22px;
+        }
+
+        footer .jabbo {
+            text-align: center;
+            margin: 5px;
+        }
+
+        .jay {
+            color:#2a4ebc;
+            font-family: 'Oswald', sans-serif;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        footer ul {
+            margin-top: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 21px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        footer ul li {
+            display: flex;
+            justify-content: center;
+        }
+
+        footer ul a {
+          font-family: 'Montserrat', sans-serif;
+            text-decoration: none;
+            color:#000000 ;
+        }
+
+
+        footer .bimbo {
+            margin: 7px;
+            text-align: center;
+            font-size: 21px;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            left: 1%;
+            color: #000000;
+           
+        }
+        footer .jimbo{
+            margin: 7px;
+            text-align: center;
+            font-size: 21px;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            left: 1%;
+            color: #000000;
+        }
+        .nigo i {
+        font-size: 28px;
+        color: #2a4ebc;
+       }
+        </style>
 	</head>
 
-	
-	<body>
-		<div class="container bg-gray-400/200 mx-auto">	
-			
-				<nav class="bg-gray-100 flex columns-2">
-					<img class="inset-1 " src="../companymedia/logo.png" alt="actern bird">
-					<div class="logo inline-block">
-						<header class="item p-3 flex-initial text-orange-600 block font-sans italic font-bold text-9xl">Arctern</header>
-						<span class="item bg-blue-700/95 text-gray-100 block rounded-bl-3xl text-5xl font-bold font-sans p-3 text-right">GLOBAL</span>
-					</div>
-				</nav>
+    <div class="nav-right visible-xs">
+        <div class="button" id="btn">
+            <div class="bar top"></div>
+            <div class="bar middle"></div>
+            <div class="bar bottom"></div>
+        </div>
+    </div>
 
-				<!--<section class="text-gray-100 bg-orange-500 bg-opacity-60">
-					<h1 class="text-7xl">WE ARE ARCTERN...</h1>
-					<p class="text-lg">Inspired by the Arctic Tern bird which flies the furthest distance among all birds, our company reaches the furthest in delivering your parcels, documents or freight no matter the size as well as procuring construction, mining and other heavy duty machinery.</p>
-				</section>-->
-				<div class="container colo">
+    <main>
+
+        <nav>
+            <div class="nav-right hidden-xs">
+                <div class="button" id="btn">
+                    <div class="bar top"></div>
+                    <div class="bar middle"></div>
+                    <div class="bar bottom"></div>
+                </div>
+            </div>
+
+            <h1><a href="index.html"><img src="image0.jpeg" class="fitz" alt=""></a> </h1>
+        </nav>
+
+    </main>
 
 
-				</div>
+    <div class="sidebar">
+        <ul class="sidebar-list">
+            <li class="sidebar-item"><a href="index.html" class="sidebar-anchor">Home</a></li>
+            <li class="sidebar-item"><a href="About Arctern Global.html" class="sidebar-anchor">About Arctern Global</a></li>
+            <li class="sidebar-item"><a href="Contact Us.html" class="sidebar-anchor">Contact Us</a></li>
+        </ul>
+    </div>
+
+
+					<h2>WE ARE ARCTERN...</h2>
+					<p>Inspired by the Arctic Tern bird which flies the furthest distance among all birds, our company reaches the furthest in delivering your parcels, documents or freight no matter the size as well as procuring construction, mining and other heavy duty machinery.</p>
 				
+						<h3>Our Method</h3>
+						<p >We have built a robust ecosystem of suppliers all around the globe that allows us to source all kinds of products as per your request.</p> <br/>
+						<p >By leveraging the strength of our relationships with our suppliers, we are able to source and deliver products at a significantly cheaper price, this allows our customers to maximize their profits as well as attract more customers for our suppliers which in turn increases our discount factor</p>
 				
-				
+                        <h3>We Source And Deliver:</h3>
 
-				<div class="container flex">
+                        <p>Agriculture and mining equipment for construction</p>
 
-					<section class="flex-auto bg-blue-700 bg-opacity-95  text-gray-100">
-						<h3 class="text-5xl text-gray-50">Our Method</h3>
-						<br>
-						<p class="text-lg">We have built a robust ecosystem of suppliers all around the globe that allows us to source all kinds of products as per your request.</p> <br/>
-						<p class="text-lg">By leveraging the strength of our relationships with our suppliers, we are able to source and deliver products at a significantly cheaper price, this allows our customers to maximize their profits as well as attract more customers for our suppliers which in turn increases our discount factor</p>
-					</section>
-					<section class="bg-gray-400/200">
-						<h3 class="text-5xl text-blue-700/95"><strong>We Source and Deliver:</strong></h3>
-						<ul>
-							<li><div class="linkwrapper">
-								<a><img src="/companymedia/logo.png"
-								AGRIC ABD MINING EQUIPMENT FOR CONSTRUCTION
-								</a>
-								</div>
-							</li>
+                        <p>Electronic Gadgets</p>
 
-						</ul>
-					</section>
-				</div>
-		</div>	
+                        <p>Clothes and Furniture</p>
+
+        <footer id="footer">
+            <div class="jabbo">
+                <div class="jay">About Us</div>
+                <p class="Jim"></p>
+            </div>
+    
+            <ul>
+                <div class="jay">Company</div>
+                <li style="border-left:none">
+                    <a href="About Us.html">About Arctern Global</a>
+                </li>
+                <li>
+                    <a href="Contact Us.html">Contact Us</a>
+                </li>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+            </ul>
+    
+            <p class="jimbo">
+              <span style="font-weight:bold ;">Address : </span> 20677 Malanga Tilco Road Zengeza, Harare Zimbabwe.
+            </p>
+    
+    
+            <div class="nigo">
+               <a href="tel:+8617620850835"> <i class="fa fa-phone"></i></a>
+               <a href="mailto:contact@company.com"> <i class="fa fa-envelope-o"></i></a>
+              </div>
+    
+        <p class="bimbo">
+                &#169; 2022 Arctern Global.</p>
+    
+        </footer>
+        
+      <script>
+        $(document).ready(function() {
+    
+      
+    function toggleSidebar() {
+       $(".button").toggleClass("active");
+       $("main").toggleClass("move-to-left");
+       $(".sidebar-item").toggleClass("active");
+       $(".sidebar-list").toggleClass("active");
+     }
+     
+     $(".button").on("click tap", function() {
+       toggleSidebar();
+     });
+     
+     $(document).keyup(function(e) {
+       if (e.keyCode === 27) {
+         toggleSidebar();
+       }
+     });
+     
+     }); 
+      </script>
 	</body>
+
 </html>
